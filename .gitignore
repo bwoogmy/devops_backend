@@ -46,5 +46,3 @@ alembic/versions/*.pyc
 .coverage
 htmlcov/
 
-# Docker
-.dockerignore
