@@ -1,0 +1,45 @@
+# Replica count
+replicaCount: 1
+
+# Docker image configuration
+image:
+  repository: devops-backend
+  pullPolicy: Never
+  tag: "latest"
+
+# Service configuration
+service:
+  type: ClusterIP
+  port: 8000
+  targetPort: 8000
+
+# Environment variables for FastAPI
+env:
+  - name: DATABASE_URL
+    value: "postgresql://postgres:postgres@postgresql.database.svc.cluster.local:5432/twitter_clone"
+  - name: DEBUG
+    value: "true"
+
+# Health checks
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8000
+  initialDelaySeconds: 30
+  periodSeconds: 10
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: 8000
+  initialDelaySeconds: 10
+  periodSeconds: 5
+
+# Resources
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi

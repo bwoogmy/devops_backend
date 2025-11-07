@@ -1,0 +1,15 @@
+Thank you for installing {{ .Chart.Name }}!
+
+Your FastAPI backend has been deployed to namespace: {{ .Release.Namespace }}
+
+To access your backend API:
+
+  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "backend.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+  
+  kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 8000:8000
+
+Then visit http://127.0.0.1:8000/docs to see the API documentation.
+
+To check the status of your deployment:
+
+  kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/instance={{ .Release.Name }}"
