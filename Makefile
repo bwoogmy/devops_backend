@@ -32,7 +32,7 @@ push:
 
 unit-test:
 	@echo "Running unit tests..."
-	pip3 install --quiet -r requirements.txt && pytest tests/ -v
+	pip3 install --quiet --break-system-packages -r requirements.txt && pytest tests/ -v
 
 lint:
 	@echo "Linting Helm chart..."
