@@ -15,15 +15,6 @@ pipeline {
                 checkout scm
             }
         }
-
-        stage('Debug') {
-            steps {
-                echo 'Checking workspace files...'
-                sh 'pwd'
-                sh 'ls -la'
-                sh 'cat requirements.txt'
-            }
-        }
         
         stage('Run Tests') {
             steps {
