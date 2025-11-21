@@ -32,7 +32,7 @@ push:
 
 unit-test:
 	@echo "Running unit tests in Docker..."
-	docker run --rm -v $(PWD):/app -w /app python:3.10-slim sh -c "pip install --quiet -r requirements.txt && pytest tests/ -v"
+	docker run --rm -v $(shell pwd):/app -w /app python:3.10-slim sh -c "pip install --quiet -r requirements.txt && pytest tests/ -v"
 
 lint:
 	@echo "Linting Helm chart..."
