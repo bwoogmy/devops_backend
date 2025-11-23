@@ -31,12 +31,6 @@ pipeline {
         }
         
         stage('Build Image') {
-            when {
-                anyOf {
-                    branch 'main'
-                    tag pattern: "v\\d+\\.\\d+\\.\\d+", comparator: "REGEXP"
-                }
-            }
             steps {
                 script {
                     def imageTag = env.TAG_NAME ?: 'latest'
