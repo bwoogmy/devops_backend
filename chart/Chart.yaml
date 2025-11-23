@@ -1,8 +1,8 @@
 apiVersion: v2
-name: backend
+name: devops-backend
 description: FastAPI Backend for Twitter Clone
 type: application
-version: 0.1.0
-appVersion: "1.0.0"
+version: 0.0.2
+appVersion: "0.0.2"
 maintainers:
   - name: hereWeGo

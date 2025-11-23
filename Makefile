@@ -5,7 +5,7 @@ IMAGE_NAME = devops-backend
 IMAGE_TAG = latest
 REGISTRY = ghcr.io/bwoogmy
 CHART_PATH = chart
-CHART_NAME = backend
+CHART_NAME = devops-backend
 
 help:
 	@echo "Available commands:"
