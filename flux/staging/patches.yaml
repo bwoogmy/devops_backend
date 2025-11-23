@@ -1,0 +1,13 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: devops-backend
+  namespace: backend
+spec:
+  chart:
+    spec:
+      version: PLACEHOLDER_VERSION
+  values:
+    image:
+      tag: PLACEHOLDER_VERSION
+    replicaCount: 2

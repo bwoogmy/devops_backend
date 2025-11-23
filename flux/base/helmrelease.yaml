@@ -1,0 +1,27 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: devops-backend
+  namespace: backend
+spec:
+  type: oci
+  interval: 1m
+  url: oci://ghcr.io/bwoogmy
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: devops-backend
+  namespace: backend
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: devops-backend
+      version: PLACEHOLDER_VERSION
+      sourceRef:
+        kind: HelmRepository
+        name: devops-backend
+  values:
+    image:
+      tag: PLACEHOLDER_VERSION
