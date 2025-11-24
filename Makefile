@@ -6,7 +6,7 @@ IMAGE_TAG = latest
 REGISTRY = ghcr.io/bwoogmy
 CHART_PATH = chart
 CHART_NAME = devops-backend
-CHART_REGISTRY = $(REGISTRY)/helm/$(IMAGE_NAME)
+CHART_REGISTRY = $(REGISTRY)/helm
 
 help:
 	@echo "Available commands:"
