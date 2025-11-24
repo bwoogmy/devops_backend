@@ -10,6 +10,19 @@ pipeline {
     }
     
     stages {
+        stage('Detect Version') {
+        steps {
+            script {
+                env.TAG_NAME = sh(
+                    script: "git describe --tags --exact-match 2>/dev/null || echo ''",
+                    returnStdout: true
+                ).trim()
+                echo "Detected tag: ${env.TAG_NAME}"
+                echo "Branch: ${env.BRANCH_NAME}"
+                echo "Git commit: ${env.GIT_COMMIT}"
+            }
+        }
+    }
         stage('Checkout') {
             steps {
                 checkout scm
@@ -42,7 +55,9 @@ pipeline {
         
         stage('Push to Registry') {
             when {
-                tag pattern: "v\\d+\\.\\d+\\.\\d+", comparator: "REGEXP"
+                expression { 
+                    return env.TAG_NAME != null && env.TAG_NAME != '' && env.TAG_NAME.matches('v\\d+\\.\\d+\\.\\d+')
+                }
             }
             steps {
                 script {
@@ -71,7 +86,9 @@ pipeline {
 
         stage('Update Flux Staging') {
             when {
-                tag pattern: "v\\d+\\.\\d+\\.\\d+", comparator: "REGEXP"
+                expression { 
+                    return env.TAG_NAME != null && env.TAG_NAME != '' && env.TAG_NAME.matches('v\\d+\\.\\d+\\.\\d+')
+                }
             }
             steps {
                 script {
