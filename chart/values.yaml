@@ -15,8 +15,26 @@ service:
 
 # Environment variables for FastAPI
 env:
-  - name: DATABASE_URL
-    value: "postgresql://postgres:postgres@postgresql.database.svc.cluster.local:5432/twitter_clone"
+  - name: POSTGRES_HOST
+    valueFrom:
+      secretKeyRef:
+        name: backend-database
+        key: POSTGRES_HOST
+  - name: POSTGRES_USER
+    valueFrom:
+      secretKeyRef:
+        name: backend-database
+        key: POSTGRES_USER
+  - name: POSTGRES_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: backend-database
+        key: POSTGRES_PASSWORD
+  - name: POSTGRES_DB
+    valueFrom:
+      secretKeyRef:
+        name: backend-database
+        key: POSTGRES_DB
   - name: DEBUG
     value: "true"
 
