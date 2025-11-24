@@ -10,6 +10,14 @@ pipeline {
     }
     
     stages {
+        
+        stage('Checkout') {
+            steps {
+                checkout scm
+                sh 'git fetch --tags'
+            }
+        }
+        
         stage('Detect Version') {
         steps {
             script {
@@ -23,11 +31,6 @@ pipeline {
             }
         }
     }
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
         
         stage('Run Tests') {
             steps {
