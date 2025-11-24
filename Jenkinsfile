@@ -77,19 +77,20 @@ pipeline {
                 script {
                     def chartVersion = env.TAG_NAME.replaceFirst(/^v/, '')
                     
-                    sh """
-                        sed -i 's|version: .*|version: ${chartVersion}|' flux/staging/patches.yaml
-                        git config user.name "Jenkins CI"
-                        git config user.email "jenkins@devops.local"
-                        git add flux/staging/patches.yaml
-                        git commit -m "chore: bump staging to ${chartVersion}" || echo "No changes to commit"
-                        git push origin HEAD:main || echo "Push failed or no changes"
-                    """
+                    withCredentials([usernamePassword(credentialsId: 'github-ghcr', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                        sh """
+                            git config user.name "Jenkins CI"
+                            git config user.email "jenkins@devops.local"
+                            sed -i 's|version: .*|version: ${chartVersion}|' flux/staging/patches.yaml
+                            git add flux/staging/patches.yaml
+                            git commit -m "chore: bump staging to ${chartVersion}" || echo "No changes to commit"
+                            
+                            git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/bwoogmy/devops_backend.git HEAD:main || echo "Push failed or no changes"
+                        """
+                    }
                 }
             }
         }
-
-    }
     
     post {
         success {
