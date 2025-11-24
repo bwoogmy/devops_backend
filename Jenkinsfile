@@ -83,6 +83,7 @@ pipeline {
                             git config user.name "Jenkins CI"
                             git config user.email "jenkins@devops.local"
                             sed -i 's|version: .*|version: ${chartVersion}|' flux/staging/patches.yaml
+                            sed -i 's|tag: .*|tag: v${chartVersion}|' flux/staging/patches.yaml    
                             git add flux/staging/patches.yaml
                             git commit -m "chore: bump staging to ${chartVersion}" || echo "No changes to commit"
                             
