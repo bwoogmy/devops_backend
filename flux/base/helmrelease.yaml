@@ -11,7 +11,7 @@ metadata:
 spec:
   type: oci
   interval: 1m
-  url: oci://ghcr.io/bwoogmy/helm/devops-backend
+  url: oci://ghcr.io/bwoogmy/helm
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
