@@ -6,8 +6,8 @@ metadata:
 spec:
   chart:
     spec:
-      version: 0.0.2
+      version: 0.0.3
   values:
     image:
-      tag: PLACEHOLDER_VERSION
+      tag: v0.0.3
     replicaCount: 2
