@@ -6,7 +6,7 @@ metadata:
 spec:
   chart:
     spec:
-      version: 0.0.101
+      version: 0.0.2
   values:
     image:
       tag: PLACEHOLDER_VERSION
