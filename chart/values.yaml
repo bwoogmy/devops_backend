@@ -38,8 +38,16 @@ readinessProbe:
 # Resources
 resources:
   limits:
-    cpu: 500m
-    memory: 512Mi
-  requests:
-    cpu: 250m
+    cpu: 200m
     memory: 256Mi
+  requests:
+    cpu: 50m
+    memory: 64Mi
+
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: devops-backend
+        topologyKey: kubernetes.io/hostname
