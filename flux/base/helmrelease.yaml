@@ -12,6 +12,8 @@ spec:
   type: oci
   interval: 1m
   url: oci://ghcr.io/bwoogmy/helm
+  secretRef:
+    name: ghcr-credentials
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
