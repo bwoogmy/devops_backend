@@ -69,3 +69,6 @@ affinity:
           matchLabels:
             app.kubernetes.io/name: devops-backend
         topologyKey: kubernetes.io/hostname
+
+imagePullSecrets:
+  - name: ghcr-credentials
