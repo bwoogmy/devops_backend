@@ -6,8 +6,8 @@ metadata:
 spec:
   chart:
     spec:
-      version: v0.0.7
+      version: v0.0.9
   values:
     image:
-      tag: v0.0.7
+      tag: v0.0.9
     replicaCount: 2
